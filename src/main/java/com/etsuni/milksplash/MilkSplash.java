@@ -1,5 +1,7 @@
 package com.etsuni.milksplash;
 
+import com.etsuni.milksplash.cleaneffectprovider.TweakedMilkCleanEffectProvider;
+import com.etsuni.milksplash.cleaneffectprovider.MilkCleanEffectProvider;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
@@ -8,6 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.ApiStatus;
 
 
 import java.util.ArrayList;
@@ -16,7 +19,9 @@ import java.util.logging.Logger;
 
 
 public final class MilkSplash extends JavaPlugin {
-
+    
+    @ApiStatus.Experimental
+    public static volatile MilkCleanEffectProvider effectProvider;
 
     FileConfiguration config = getConfig();
     private static final Logger log = Logger.getLogger("Minecraft");
@@ -51,7 +56,11 @@ public final class MilkSplash extends JavaPlugin {
         config.options().copyDefaults(true);
         saveConfig();
         MilkBottle.createMilkBottles();
-
+        
+        effectProvider = new TweakedMilkCleanEffectProvider(
+            config.getBoolean("negative_effects_only"),
+            config.getBoolean("only_cleanse_throwers_effects")
+        );
         MilkPotion milkPotion = new MilkPotion();
         if(config.getBoolean("crafting_enabled")) {
             Bukkit.addRecipe(milkPotion.createRecipe());

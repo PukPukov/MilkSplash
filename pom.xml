@@ -6,7 +6,7 @@
 
     <groupId>com.etsuni</groupId>
     <artifactId>MilkSplash</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
     <packaging>jar</packaging>
 
     <name>MilkSplash</name>
@@ -21,7 +21,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.14.0</version>
                 <configuration>
                     <release>17</release>
                 </configuration>
@@ -29,17 +29,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
+                <version>3.6.0</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
                         </goals>
-                        <configuration>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <outputDirectory>D:\MyStuff\plugin test server\plugins</outputDirectory>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -78,6 +74,12 @@
             <groupId>com.github.MilkBowl</groupId>
             <artifactId>VaultAPI</artifactId>
             <version>1.7</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.38</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
