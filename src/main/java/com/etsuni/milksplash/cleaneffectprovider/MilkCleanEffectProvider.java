@@ -10,7 +10,7 @@ import java.util.Set;
 @ApiStatus.Experimental
 public abstract class MilkCleanEffectProvider {
     
-    protected abstract Set<PotionEffectType> shouldBeCleanedFor(LivingEntity thrower, LivingEntity receiver);
+    public abstract Set<PotionEffectType> shouldBeCleanedFor(LivingEntity thrower, LivingEntity receiver);
     
     public void clean(LivingEntity thrower, LivingEntity receiver) {
         var toClean = shouldBeCleanedFor(thrower, receiver);

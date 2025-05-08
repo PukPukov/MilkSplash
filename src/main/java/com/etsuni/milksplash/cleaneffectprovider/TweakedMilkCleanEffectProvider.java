@@ -43,7 +43,7 @@ public class TweakedMilkCleanEffectProvider extends MilkCleanEffectProvider {
     }
     
     @Override
-    protected Set<PotionEffectType> shouldBeCleanedFor(LivingEntity thrower, LivingEntity receiver) {
+    public Set<PotionEffectType> shouldBeCleanedFor(LivingEntity thrower, LivingEntity receiver) {
         if (this.removeOnlyOwn && (!thrower.equals(receiver))) return Set.of();
         if (this.removeOnlyNegative) return negativeEffects(false);
         else return allEffects();
